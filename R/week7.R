@@ -2,7 +2,7 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(tidyverse)
 library(ggplot2)
-
+library(GGally)
 
 
 # Data Import and Cleaning
@@ -12,15 +12,19 @@ week7_tbl <-read_csv("../data/week3.csv",col_types = cols(timeStart=col_datetime
   mutate(Gender= factor(Gender, levels = c("F","M"),labels=c("Female","Male"))) %>%
   filter(q6==1) %>%
   select(-q6) %>%
-  mutate(timeSpent=timeEnd-timeStart) %>%
- 
+  mutate(timeSpent=timeEnd-timeStart) 
+
 
 
 
  
 # Visualization
-  week7_tbl %>% ggplot(aes(timeStart,q1)) +
+week7_tbl %>% select(q1:q10) %>%
+  ggpairs() %>% 
+  ggsave("fig1.png",.) 
+(week7_tbl %>% ggplot(aes(timeStart,q1)) +
   geom_point() +
-  labs(x="Date of Experiment", y="Q1 Score") 
+  labs(x="Date of Experiment", y="Q1 Score")) %>%
+  ggsave("fig2.png",.) 
   
-                     
+              
