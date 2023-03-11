@@ -33,18 +33,18 @@ week7_tbl %>%
   labs(color="Participant Gender") + 
   coord_fixed(ratio=0.75)) %>%
   ggsave("fig3.png",.) 
- 
-
-
-
-
-
+(week7_tbl %>% ggplot(aes(q1,q2)) +
+  geom_jitter() +
+  facet_grid(cols=vars(Gender))+
+  labs(x="Score on Q1", y="Score on Q2")+ 
+  coord_fixed()) %>%
+  ggsave("fig4.png",.) 
 
 (week7_tbl %>% 
   ggplot(aes(Gender,timeSpent)) +
   geom_boxplot() +
   ylab("Time Elapsed (mins)")) %>%
-  ggsave("fig4.png",.) 
+  ggsave("fig5.png",.) 
 
 (week7_tbl %>%
   ggplot(aes(q5,q7,color=Condition)) +
@@ -55,4 +55,4 @@ week7_tbl %>%
   labs(color="Experimental Condition") +
   theme(legend.position="bottom",
         legend.background=element_rect("#E0E0E0"))) %>%
-  ggsave("fig5.png",.) 
+  ggsave("fig6.png",.) 
