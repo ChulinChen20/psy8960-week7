@@ -51,7 +51,6 @@ week7_tbl %>%
   geom_point(position=position_jitter(width=0.1)) +
   geom_smooth(method = "lm", se = FALSE) +
   coord_fixed(ratio=0.4) +
-  labs(x="Score on Q5", y="Score on Q7") +
-  labs(color="Experimental Condition") +
+  labs(x="Score on Q5", y="Score on Q7",color="Experimental Condition") +
   theme(legend.position="bottom",
         legend.background=element_rect("#E0E0E0"))
